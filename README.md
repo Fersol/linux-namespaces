@@ -41,11 +41,7 @@ ip netns exec dhcp-r dnsmasq --interface=tap-r --dhcp-range=10.50.50.10,10.50.50
 
 # Check system
 
-ip netns exec smirnov-green dhclient -v eth0-g  --- Get ip from dhcp
-
-dhclient -r eth0  --- Drop ip
-
-ping -I eth0 10.50.50.2
+ping -I eth0 10.50.50.2  --- ping от хоста
 
 ps -ef  ---  that dnsmasq works
 
@@ -54,8 +50,6 @@ ip netns identify pid --- show the namespace of process (that was shown up)
 ip netns exec smirnov-red dhclient eth0-r -- get ip address
 
 ip netns exec smirnov-red ip a --- see resulted ip address
-
-ip netns exec smirnov-red ping xxx.xxx.xxx.xxx  -- check netwwork
 
 # Help commands:
 ip route
