@@ -1,5 +1,6 @@
 # Linux namespaces
 based on https://www.youtube.com/watch?v=_WgUwUf1d34
+
 Working with linux namespaces. Create 2 namaspaces with dhcp servers.
 
 # Commands:
@@ -45,6 +46,16 @@ ip netns exec smirnov-green dhclient -v eth0-g  --- Get ip from dhcp
 dhclient -r eth0  --- Drop ip
 
 ping -I eth0 10.50.50.2
+
+ps -ef  ---  that dnsmasq works
+
+ip netns identify pid --- show the namespace of process (that was shown up)
+
+ip netns exec smirnov-red dhclient eth0-r -- get ip address
+
+ip netns exec smirnov-red ip a --- see resulted ip address
+
+ip netns exec smirnov-red ping xxx.xxx.xxx.xxx  -- check netwwork
 
 # Help commands:
 ip route
