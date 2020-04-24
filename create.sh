@@ -25,7 +25,7 @@ ip link set eth1-g netns smirnov-green1
 
 # add port to open vSwitch
 ovs-vsctl add-port OVS1 veth0-r
-ovs-vsctl add-port OVS1 veth1-rc
+ovs-vsctl add-port OVS1 veth1-r
 ovs-vsctl add-port OVS1 veth0-g
 ovs-vsctl add-port OVS1 veth1-g
 
@@ -64,7 +64,7 @@ ip link set tap-g netns dhcp-g
 # set dhcp dev
 ip netns exec dhcp-r ip link set dev lo up
 ip netns exec dhcp-r ip link set dev tap-r up
-ip netns exec dhcp-r ip address add 10.50.50.2/24 dev tap-r
+ip netns exec dhcp-r ip address add 20.50.50.2/24 dev tap-r
 
 
 # set dhcp dev
@@ -73,7 +73,7 @@ ip netns exec dhcp-g ip link set dev tap-g up
 ip netns exec dhcp-g ip address add 10.50.50.2/24 dev tap-g
 
 # set dhcp processes
-ip netns exec dhcp-r dnsmasq --interface=tap-r --dhcp-range=10.50.50.10,10.50.50.100,255.255.255.0
+ip netns exec dhcp-r dnsmasq --interface=tap-r --dhcp-range=20.50.50.10,20.50.50.100,255.255.255.0
 ip netns exec dhcp-g dnsmasq --interface=tap-g --dhcp-range=10.50.50.10,10.50.50.100,255.255.255.0
 
 # get ip address from dhcp
